@@ -1,6 +1,6 @@
 import argparse
 
-from fetcher import fetch
+from file_fetched import fetch
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-list_url', required=True, help='URL of files to download')

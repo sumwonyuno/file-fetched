@@ -6,7 +6,7 @@ setup(
     license='MIT',
     url='https://github.com/sumwonyuno/file-fetched',
     packages=[
-        'fetcher'
+        'file_fetched'
     ],
     install_requires=[
         'certifi'

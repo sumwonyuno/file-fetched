@@ -4,7 +4,7 @@ import unittest
 
 import shutil
 
-from fetcher import fetch
+from file_fetched import fetch
 
 
 class TestFetcherFetch(unittest.TestCase):
