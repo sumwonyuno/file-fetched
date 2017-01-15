@@ -1,6 +1,5 @@
 import argparse
 
-import fetcher
 from fetcher import fetch
 
 parser = argparse.ArgumentParser()
