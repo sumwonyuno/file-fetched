@@ -4,7 +4,6 @@ import os
 
 import sys
 import urllib.request
-from json import JSONDecodeError
 from urllib.error import URLError
 
 import certifi
@@ -69,10 +68,6 @@ def run(list_url: str, save_dir: str):
     except URLError as e:
         print(e, file=sys.stderr)
         print('unable to retrieve URL %s. exiting.' % list_url, file=sys.stderr)
-        sys.exit(1)
-    except JSONDecodeError as e:
-        print(e, file=sys.stderr)
-        print('unable to parse JSON from URL %s exiting.' % list_url, file=sys.stderr)
         sys.exit(1)
     except ValueError as e:
         print(e, file=sys.stderr)
