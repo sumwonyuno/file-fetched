@@ -1,0 +1,7 @@
+[
+  {
+    "name": "test.txt",
+    "url": "file:resources/sample_file.txt",
+    "md5": "this is not a hash"
+  }
+]
