@@ -211,6 +211,9 @@ class TestFetcherFetch(unittest.TestCase):
         tmp_dir = tempfile.mkdtemp()
         try:
             fetch.run(list_url='file:resources/sample_drive.json', save_dir=tmp_dir)
+            expected_path = os.path.join(tmp_dir, 'uhm132.pdf')
+            self.assertTrue(os.path.exists(expected_path))
+            self.assertFalse(os.path.exists(expected_path + '.partial'))
         finally:
             shutil.rmtree(tmp_dir)
 
