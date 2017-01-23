@@ -26,7 +26,7 @@ Python packages:
 __From URL (Latest release)__
 
 ```
-pip3 install https://github.com/sumwonyuno/file-fetched/releases/download/v0.1.0/file-fetched-0.1.0.tar.gz
+pip3 install https://github.com/sumwonyuno/file-fetched/releases/download/v0.2.0/file-fetched-0.2.0.tar.gz
 ```
 
 __From Source__
@@ -36,7 +36,7 @@ git clone git@github.com:sumwonyuno/file-fetched.git
 cd file-fetched
 python3 setup.py sdist
 cd dist
-pip3 install file-fetched-0.1.0.tar.gz
+pip3 install file-fetched-0.2.0.tar.gz
 ```
 
 #Usage
