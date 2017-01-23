@@ -17,6 +17,18 @@ class TestFetcherFetch(unittest.TestCase):
             # should go here
             pass
 
+    def test_unacceptable_list_url_contents(self):
+        tmp_dir = tempfile.mkdtemp()
+        try:
+            fetch.run(list_url='file:resources/sample_file.txt', save_dir=tmp_dir)
+            # shouldn't go here
+            self.assertTrue(False)
+        except SystemExit:
+            # should go here
+            pass
+        finally:
+            shutil.rmtree(tmp_dir)
+
     def test_run_local(self):
         tmp_dir = tempfile.mkdtemp()
         try:
