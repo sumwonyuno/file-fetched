@@ -53,11 +53,16 @@ def _hash_file(entry: dict, file_path: str) -> bool:
 
 def _handle_url(url: str, output_file: str):
     chunk_size = 4096
-    # need to handle drive.google.com differently
-    if url.startswith('https://drive.google.com/'):
-        _handle_g_drive_url(url=url, output_file=output_file, chunk_size=chunk_size)
-    else:
+    if url.startswith('file:'):
         _handle_default_url(url=url, output_file=output_file, chunk_size=chunk_size)
+    elif url.startswith('http:'):
+        _handle_default_url(url=url, output_file=output_file, chunk_size=chunk_size)
+    elif url.startswith('https://drive.google.com/'):
+        _handle_g_drive_url(url=url, output_file=output_file, chunk_size=chunk_size)
+    elif url.startswith('https:'):
+        _handle_default_url(url=url, output_file=output_file, chunk_size=chunk_size)
+    else:
+        print('Unsupported scheme for URL %s. skipping.' % url, file=sys.stderr)
 
 
 def _handle_default_url(url: str, output_file: str, chunk_size: int):

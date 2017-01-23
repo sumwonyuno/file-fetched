@@ -213,3 +213,13 @@ class TestFetcherFetch(unittest.TestCase):
             fetch.run(list_url='file:resources/sample_drive.json', save_dir=tmp_dir)
         finally:
             shutil.rmtree(tmp_dir)
+
+    def test_unsupported_url_scheme(self):
+        tmp_dir = tempfile.mkdtemp()
+        try:
+            output_file = os.path.join(tmp_dir, 'example.txt')
+            fetch._handle_url(url='ftp://example.com', output_file=output_file)
+            # no file should have been downloaded
+            self.assertFalse(os.path.exists(output_file))
+        finally:
+            shutil.rmtree(tmp_dir)
