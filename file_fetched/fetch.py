@@ -3,6 +3,7 @@ import json
 import os
 
 import sys
+import tempfile
 import urllib.request
 from html.parser import HTMLParser
 from urllib.error import URLError
@@ -168,8 +169,16 @@ def run(list_url: str, save_dir: str):
     # get list of files to download
     print('Retrieving list of files to download from URL %s' % list_url)
     try:
-        with urllib.request.urlopen(list_url, cafile=certifi.where()) as f:
-            json_data = json.loads(f.read().decode('UTF-8'))
+        # download list_url to temp file
+        # mkstemp returns tuple (file handle, file path)
+        tmp_file = tempfile.mkstemp()[1]
+        try:
+            _handle_url(url=list_url, output_file=tmp_file)
+            # list_url file should exist
+            with open(tmp_file) as f:
+                json_data = json.load(f)
+        finally:
+            os.remove(tmp_file)
     except URLError as e:
         print(e, file=sys.stderr)
         print('unable to retrieve URL %s. exiting.' % list_url, file=sys.stderr)

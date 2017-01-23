@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Changed
 - unsupported URL schemes will not be processed
+- list_url and the URLs in list_url contents are retrieved in the same way
 
 ## [0.2.0] - 2017-01-23
 ### Added
