@@ -4,6 +4,7 @@ A Python package that downloads files and supports additional functionality.
 ##Features
 - Download a specified list of files to a specified directory
 - Check downloaded files match given hash values
+- Support for Google Drive URLs (e.g. /open, /file/d)
 
 ##Supported URL schemes
 - file

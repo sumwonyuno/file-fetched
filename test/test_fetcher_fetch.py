@@ -188,3 +188,28 @@ class TestFetcherFetch(unittest.TestCase):
             self.assertTrue(os.path.exists(expected_path + '.partial'))
         finally:
             shutil.rmtree(tmp_dir)
+
+    def test_translate_g_drive_url(self):
+        # /open?id=<id>
+        url = 'https://drive.google.com/open?id=1'
+        new_url = fetch._translate_g_drive_url(url=url)
+        self.assertEqual('https://drive.google.com/uc?export=download&id=1', new_url)
+        # /file/d/<id>
+        url = 'https://drive.google.com/file/d/2'
+        new_url = fetch._translate_g_drive_url(url=url)
+        self.assertEqual('https://drive.google.com/uc?export=download&id=2', new_url)
+        # /file/d/<id>/view
+        url = 'https://drive.google.com/file/d/3/view'
+        new_url = fetch._translate_g_drive_url(url=url)
+        self.assertEqual('https://drive.google.com/uc?export=download&id=3', new_url)
+        # /uc?export=download&id=<id>
+        url = 'https://drive.google.com/uc?export=download&id=4'
+        new_url = fetch._translate_g_drive_url(url=url)
+        self.assertEqual(url, new_url)
+
+    def test_g_drive_url(self):
+        tmp_dir = tempfile.mkdtemp()
+        try:
+            fetch.run(list_url='file:resources/sample_drive.json', save_dir=tmp_dir)
+        finally:
+            shutil.rmtree(tmp_dir)
